@@ -8,8 +8,11 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.mintergralsdk.databinding.ActivityMainBinding
 import com.sdk.mintergral.AdsModel
 import com.sdk.mintergral.MintergralUtils
+import com.sdk.mintergral.NativeSize
 import com.sdk.mintergral.callback.BannerListener
 import com.sdk.mintergral.callback.InterstitialListener
+import com.sdk.mintergral.callback.NativeListener
+import com.sdk.mintergral.callback.RewardListener
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     val bannerUnit = AdsModel("1010694", "2677210", false)
     val nativeUnit = AdsModel("328917", "1542077", false)
     val interstitialUnit = AdsModel("290653", "462374", false)
+    val reward = AdsModel("290651", "462372", false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,10 +32,34 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        binding.btnShowReward.setOnClickListener { 
+            MintergralUtils.loadAndShowReward(this, reward,true, object : RewardListener {
+                override fun onLoadSuccessed() {
+                    
+                }
+
+                override fun onLoadFailed(errorMsg: String) {
+                    
+                }
+
+                override fun onShowSuccessed() {
+                    
+                }
+
+                override fun onShowFailed(errorMsg: String) {
+                    
+                }
+
+                override fun onAdClose(isCompleted: Boolean) {
+                    
+                }
+            })
+        }
+
         binding.btnShowInter.setOnClickListener {
             MintergralUtils.loadAndShoeInterstitial(
                 this,
-                interstitialUnit,
+                interstitialUnit, true,
                 object : InterstitialListener {
                     override fun onLoadSuccessed() {
 
@@ -66,6 +94,21 @@ class MainActivity : AppCompatActivity() {
                 }
             })
 
-        MintergralUtils.loadAndShowNative(this, binding.flNative, nativeUnit)
+        MintergralUtils.loadAndShowNative(
+            this,
+            binding.flNative,
+            nativeUnit,
+            NativeSize.UNIFIED_MEDIUM,
+            object : NativeListener {
+                override fun loadFailed(msg: String) {
+
+                }
+
+                override fun loadSuccessed() {
+
+                }
+            })
     }
+
+
 }

@@ -25,10 +25,10 @@ class SplashActivity : AppCompatActivity() {
             insets
         }
 
-        MintergralUtils.initMintergralSdk(this, "144002", "7c22942b749fe6a6e361b675e96b3ee9", object :
+        MintergralUtils.initMintergralSdk(this, "144002", "7c22942b749fe6a6e361b675e96b3ee9",true, object :
             InitStatusListener {
             override fun onInitSuccess() {
-                MintergralUtils.loadAndShowAOA(this@SplashActivity,20000,aoa,object :AOAListening{
+                MintergralUtils.loadAndShowAOA(this@SplashActivity,20000,aoa,true,object :AOAListening{
                     override fun loadSuccessed() {
                         
                     }

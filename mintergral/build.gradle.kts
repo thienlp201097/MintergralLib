@@ -51,4 +51,5 @@ dependencies {
 
     implementation("com.airbnb.android:lottie:6.5.0")
     implementation("com.facebook.shimmer:shimmer:0.5.0@aar")
+    implementation("com.intuit.sdp:sdp-android:1.1.1")
 }
